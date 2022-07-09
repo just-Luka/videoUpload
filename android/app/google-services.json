@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "596171903493",
+    "project_id": "blindside-task-d77db",
+    "storage_bucket": "blindside-task-d77db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:596171903493:android:4f75d80e7e7324a908426c",
+        "android_client_info": {
+          "package_name": "com.example.blindside_task"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "596171903493-9is17p7650p1sldnshg64ab97vg6nnt7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1qTupDarxAmV6O3Qy0Zq-LSH4kk9nhso"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "596171903493-9is17p7650p1sldnshg64ab97vg6nnt7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "596171903493-ulle0010aaj6lovj86vq42i91v726anj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "blindsideTask"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
