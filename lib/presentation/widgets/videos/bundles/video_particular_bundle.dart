@@ -43,17 +43,19 @@ class VideoParticularBundle extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    const LikeChip(),
+                    LikeChip(
+                      likes: videoModel.likes,
+                    ),
                     const SizedBox(width: 20),
                     BlocBuilder<CommentCubit, CommentState>(
                       builder: (context, state) {
                         if (state is CommentShow) {
-                          return const CommentChip(
+                          return CommentChip(
                             navigate: false,
                             isActive: true,
                           );
                         }
-                        return const CommentChip(
+                        return CommentChip(
                           navigate: false,
                           isActive: false,
                         );

@@ -10,7 +10,7 @@ class VideoAuthor extends StatelessWidget {
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: ListTile(
         leading: const CircleAvatar(
-          backgroundImage: AssetImage('assets/pics/profile_pic.png'),
+          backgroundImage: AssetImage('assets/pics/profile_pic2.jpeg'),
           radius: 22,
         ),
         title: Text(

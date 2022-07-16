@@ -1,8 +1,15 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LikeChip extends StatefulWidget {
-  const LikeChip({Key? key}) : super(key: key);
+  final int likes;
+
+  const LikeChip({
+    Key? key,
+    required this.likes,
+  }) : super(key: key);
 
   @override
   State<LikeChip> createState() => _LikeChipState();
@@ -30,7 +37,7 @@ class _LikeChipState extends State<LikeChip> {
             color: _isLiked ? const Color.fromRGBO(66, 66, 66, 1) : Colors.red,
           ),
           Text(
-            '100',
+            _isLiked ? (widget.likes + 1).toString() : widget.likes.toString(),
             style: GoogleFonts.josefinSans(
                 color: _isLiked
                     ? const Color.fromRGBO(66, 66, 66, 1)

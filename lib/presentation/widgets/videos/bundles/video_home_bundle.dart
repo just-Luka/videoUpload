@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:blindside_task/data/video_model.dart';
@@ -33,6 +34,8 @@ class _VideoHomeBundleState extends State<VideoHomeBundle> {
     _uint8list = uint8list!;
   }
 
+  final likes = Random().nextInt(120);
+
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
@@ -55,6 +58,7 @@ class _VideoHomeBundleState extends State<VideoHomeBundle> {
                         videoModel: VideoModel(
                           file: widget.file,
                           memoryImage: _uint8list,
+                          likes: likes,
                         ),
                       ),
                     ),
@@ -79,7 +83,20 @@ class _VideoHomeBundleState extends State<VideoHomeBundle> {
                     }),
                   ),
                 ),
-                const VideoMetaData(),
+                FutureBuilder(
+                    future: showThumbnail(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        return VideoMetaData(
+                          videoModel: VideoModel(
+                            file: widget.file,
+                            memoryImage: _uint8list,
+                            likes: likes,
+                          ),
+                        );
+                      }
+                      return const SizedBox();
+                    }),
                 const VideoDivider(),
               ],
             ),

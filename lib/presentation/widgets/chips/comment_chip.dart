@@ -1,3 +1,4 @@
+import 'package:blindside_task/data/video_model.dart';
 import 'package:blindside_task/domain/cubit/comment_cubit.dart';
 import 'package:blindside_task/presentation/pages/video_page.dart';
 import 'package:flutter/material.dart';
@@ -8,10 +9,13 @@ class CommentChip extends StatelessWidget {
   final bool isActive;
   final bool navigate;
 
-  const CommentChip({
+  VideoModel? videoModel;
+
+  CommentChip({
     Key? key,
     required this.navigate,
     required this.isActive,
+    this.videoModel,
   }) : super(key: key);
 
   @override
@@ -20,12 +24,12 @@ class CommentChip extends StatelessWidget {
       onPressed: () {
         BlocProvider.of<CommentCubit>(context).toggleComment();
         if (navigate) {
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (context) => const VideoPage(),
-          //   ),
-          // );
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => VideoPage(videoModel: videoModel!),
+            ),
+          );
         }
       },
       label: isActive
