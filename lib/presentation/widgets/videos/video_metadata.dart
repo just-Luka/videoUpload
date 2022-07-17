@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:blindside_task/data/video_model.dart';
+import 'package:blindside_task/data/models/video_model.dart';
 import 'package:blindside_task/presentation/widgets/chips/comment_chip.dart';
 import 'package:blindside_task/presentation/widgets/chips/like_chip.dart';
 import 'package:flutter/material.dart';

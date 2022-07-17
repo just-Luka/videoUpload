@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class VideoAuthor extends StatelessWidget {
-  const VideoAuthor({Key? key}) : super(key: key);
+  final VoidCallback toggleOptions;
+
+  const VideoAuthor({
+    Key? key,
+    required this.toggleOptions,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +35,7 @@ class VideoAuthor extends StatelessWidget {
         trailing: IconButton(
           icon: const Icon(Icons.more_vert),
           onPressed: () {
-            print('pressed');
+            toggleOptions();
           },
           iconSize: 28,
           color: Colors.white,

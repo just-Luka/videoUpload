@@ -7,7 +7,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
-  // await FirebaseAuth.instance.signOut();
+  await FirebaseAuth.instance.signOut();
 
   runApp(const Application());
 }

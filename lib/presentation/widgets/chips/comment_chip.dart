@@ -1,4 +1,4 @@
-import 'package:blindside_task/data/video_model.dart';
+import 'package:blindside_task/data/models/video_model.dart';
 import 'package:blindside_task/domain/cubit/comment_cubit.dart';
 import 'package:blindside_task/presentation/pages/video_page.dart';
 import 'package:flutter/material.dart';

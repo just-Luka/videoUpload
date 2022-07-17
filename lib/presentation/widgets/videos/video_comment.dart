@@ -19,7 +19,7 @@ class VideoComment extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const CircleAvatar(
-              backgroundImage: AssetImage('assets/pics/profile_pic.png'),
+              backgroundImage: AssetImage('assets/pics/profile_pic2.jpeg'),
               radius: 25,
             ),
             Expanded(

@@ -2,12 +2,13 @@ import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
 
-import 'package:blindside_task/data/video_model.dart';
+import 'package:blindside_task/data/models/video_model.dart';
 import 'package:blindside_task/presentation/pages/video_page.dart';
 import 'package:blindside_task/presentation/widgets/dividers/video_divider.dart';
 import 'package:blindside_task/presentation/widgets/videos/video_author.dart';
 import 'package:blindside_task/presentation/widgets/videos/video_metadata.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
 
 class VideoHomeBundle extends StatefulWidget {
@@ -25,6 +26,9 @@ class VideoHomeBundle extends StatefulWidget {
 class _VideoHomeBundleState extends State<VideoHomeBundle> {
   late Uint8List _uint8list;
 
+  final likes = Random().nextInt(120);
+  bool isOptionsOpened = false;
+
   Future showThumbnail() async {
     final uint8list = await VideoThumbnail.thumbnailData(
       video: widget.file.path,
@@ -34,7 +38,9 @@ class _VideoHomeBundleState extends State<VideoHomeBundle> {
     _uint8list = uint8list!;
   }
 
-  final likes = Random().nextInt(120);
+  void _toggleOptions() {
+    // pass
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +49,17 @@ class _VideoHomeBundleState extends State<VideoHomeBundle> {
     return SizedBox(
       width: double.infinity,
       height: 340,
-      child: Column(
+      child: Stack(
         children: [
-          const VideoAuthor(),
+          VideoAuthor(
+            toggleOptions: () => _toggleOptions(),
+          ),
           Padding(
-            padding: EdgeInsets.only(left: width * 0.07, right: width * 0.06),
+            padding: EdgeInsets.only(
+              left: width * 0.07,
+              right: width * 0.06,
+              top: 72,
+            ),
             child: Column(
               children: [
                 InkWell(

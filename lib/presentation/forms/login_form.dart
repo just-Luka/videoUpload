@@ -1,5 +1,6 @@
-import 'package:blindside_task/domain/auth/user_login.dart';
+import 'package:blindside_task/domain/cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginForm extends StatefulWidget {
@@ -53,7 +54,28 @@ class _LoginFormState extends State<LoginForm> {
           ),
         ),
         const SizedBox(
-          height: 20,
+          height: 10,
+        ),
+        BlocBuilder<LoginCubit, LoginState>(
+          builder: (context, state) {
+            if (state is ValidationError) {
+              return Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  state.emailMessage == null ? '' : state.emailMessage!,
+                  style: GoogleFonts.josefinSans(
+                    color: Colors.red,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              );
+            }
+            return SizedBox();
+          },
+        ),
+        const SizedBox(
+          height: 10,
         ),
         TextFormField(
           controller: _passController,
@@ -82,6 +104,39 @@ class _LoginFormState extends State<LoginForm> {
           ),
         ),
         const SizedBox(
+          height: 10,
+        ),
+        BlocBuilder<LoginCubit, LoginState>(
+          builder: (context, state) {
+            if (state is ValidationError) {
+              return Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  state.passwordMessage == null ? '' : state.passwordMessage!,
+                  style: GoogleFonts.josefinSans(
+                    color: Colors.red,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              );
+            } else if (state is LoginError) {
+              return Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  state.errorMessage,
+                  style: GoogleFonts.josefinSans(
+                    color: Colors.red,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              );
+            }
+            return SizedBox();
+          },
+        ),
+        const SizedBox(
           height: 40,
         ),
         Align(
@@ -102,10 +157,8 @@ class _LoginFormState extends State<LoginForm> {
             ),
             child: ElevatedButton(
               onPressed: () {
-                UserLogin().withEmailAndPassword(
-                  _emailController.text,
-                  _passController.text,
-                );
+                BlocProvider.of<LoginCubit>(context).withEmailAndPassword(
+                    _emailController.text, _passController.text);
               },
               style: ElevatedButton.styleFrom(
                 primary: Colors.transparent,

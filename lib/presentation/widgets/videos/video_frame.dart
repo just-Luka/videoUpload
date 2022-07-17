@@ -1,4 +1,4 @@
-import 'package:blindside_task/data/video_model.dart';
+import 'package:blindside_task/data/models/video_model.dart';
 import 'package:blindside_task/presentation/widgets/painters/triangle_painter.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';

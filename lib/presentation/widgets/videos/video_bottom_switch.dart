@@ -67,11 +67,8 @@ class _VideoBottomSwitchState extends State<VideoBottomSwitch> {
                   CenterFrame(
                     child: const VideoDivider(),
                   ),
-                  const VideoRelatedBundle(),
-                  const VideoRelatedBundle(),
-                  const VideoRelatedBundle(),
-                  const VideoRelatedBundle(),
-                  const VideoRelatedBundle(),
+                  // const VideoRelatedBundle(),
+                  // const VideoRelatedBundle(),
                 ],
               ),
             ),

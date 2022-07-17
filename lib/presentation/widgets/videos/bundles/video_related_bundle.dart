@@ -14,7 +14,7 @@ class VideoRelatedBundle extends StatelessWidget {
       height: 300,
       child: Column(
         children: [
-          const VideoAuthor(),
+          // const VideoAuthor(),
           Padding(
             padding: EdgeInsets.only(left: width * 0.07, right: width * 0.06),
             child: Column(
@@ -31,7 +31,7 @@ class VideoRelatedBundle extends StatelessWidget {
                     height: 200,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Colors.green,
+                      color: Color.fromARGB(255, 158, 158, 158),
                     ),
                   ),
                 ),
