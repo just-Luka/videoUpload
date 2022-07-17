@@ -9,9 +9,9 @@ class CommentChip extends StatelessWidget {
   final bool isActive;
   final bool navigate;
 
-  VideoModel? videoModel;
+  final VideoModel? videoModel;
 
-  CommentChip({
+  const CommentChip({
     Key? key,
     required this.navigate,
     required this.isActive,

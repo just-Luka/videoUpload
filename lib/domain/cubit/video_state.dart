@@ -6,7 +6,7 @@ abstract class VideoState {}
 class VideoInitial extends VideoState {}
 
 class VideoUploaded extends VideoState {
-  List<File> files;
+  final List<File> files;
   VideoUploaded({
     required this.files,
   });

@@ -1,7 +1,6 @@
 import 'package:blindside_task/domain/cubit/comment_cubit.dart';
 import 'package:blindside_task/presentation/frames/center_frame.dart';
 import 'package:blindside_task/presentation/widgets/dividers/video_divider.dart';
-import 'package:blindside_task/presentation/widgets/videos/bundles/video_related_bundle.dart';
 import 'package:blindside_task/presentation/widgets/videos/video_comment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -64,8 +63,8 @@ class _VideoBottomSwitchState extends State<VideoBottomSwitch> {
                       ),
                     ),
                   ),
-                  CenterFrame(
-                    child: const VideoDivider(),
+                  const CenterFrame(
+                    child: VideoDivider(),
                   ),
                   // const VideoRelatedBundle(),
                   // const VideoRelatedBundle(),

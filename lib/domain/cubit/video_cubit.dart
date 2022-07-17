@@ -20,14 +20,4 @@ class VideoCubit extends Cubit<VideoState> {
     );
     emit(VideoUploaded(files: videos));
   }
-
-  // Future _uploadfile(file) async {
-  //   if (file == null) return;
-
-  //   final path = 'videos/${file!.name}';
-  //   final file = File(file!.path);
-
-  //   final ref = FirebaseStorage.instance.ref().child(path);
-  //   UploadTask uploadTask = ref.putFile(file);
-  // }
 }

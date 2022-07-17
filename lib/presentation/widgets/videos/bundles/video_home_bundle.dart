@@ -86,7 +86,7 @@ class _VideoHomeBundleState extends State<VideoHomeBundle> {
                             borderRadius: BorderRadius.circular(10),
                             image: DecorationImage(
                               image: MemoryImage(_uint8list),
-                              fit: BoxFit.fill,
+                              fit: BoxFit.cover,
                             ),
                           ),
                         );

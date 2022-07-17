@@ -31,7 +31,7 @@ class VideoRelatedBundle extends StatelessWidget {
                     height: 200,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Color.fromARGB(255, 158, 158, 158),
+                      color: const Color.fromARGB(255, 158, 158, 158),
                     ),
                   ),
                 ),

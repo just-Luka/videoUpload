@@ -133,7 +133,7 @@ class _LoginFormState extends State<LoginForm> {
                 ),
               );
             }
-            return SizedBox();
+            return const SizedBox();
           },
         ),
         const SizedBox(

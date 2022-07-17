@@ -6,7 +6,7 @@ abstract class CommentState {}
 class CommentInitial extends CommentState {}
 
 class CommentShow extends CommentState {
-  List<String> comments;
+  final List<String> comments;
 
   CommentShow({required this.comments});
 }

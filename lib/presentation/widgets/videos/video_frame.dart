@@ -79,8 +79,9 @@ class _VideoFrameState extends State<VideoFrame> {
                     ),
                     overlayColor: MaterialStateProperty.resolveWith<Color?>(
                       (states) {
-                        if (states.contains(MaterialState.pressed))
+                        if (states.contains(MaterialState.pressed)) {
                           return Colors.grey.shade400;
+                        }
                       },
                     ),
                   ),
