@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:blindside_task/data/models/video_model.dart';
+import 'package:blindside_task/presentation/pages/video_zoom_in_page.dart';
 import 'package:blindside_task/presentation/widgets/painters/triangle_painter.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
@@ -49,19 +52,24 @@ class _VideoFrameState extends State<VideoFrame> {
     return Stack(
       alignment: Alignment.center,
       children: [
-        InkWell(
-          onTap: () {
-            _updateVideoRunState();
-          },
-          child: SizedBox(
-            width: double.infinity,
-            height: 200,
-            child: _controller.value.isInitialized
-                ? AspectRatio(
-                    aspectRatio: _controller.value.aspectRatio,
-                    child: VideoPlayer(_controller),
-                  )
-                : Container(),
+        Hero(
+          tag: 'video',
+          child: GestureDetector(
+            onTap: () {
+              _updateVideoRunState();
+            },
+            child: Center(
+              child: SizedBox(
+                width: double.infinity,
+                height: 200,
+                child: _controller.value.isInitialized
+                    ? AspectRatio(
+                        aspectRatio: _controller.value.aspectRatio,
+                        child: VideoPlayer(_controller),
+                      )
+                    : SizedBox(),
+              ),
+            ),
           ),
         ),
         AnimatedSwitcher(
@@ -100,7 +108,41 @@ class _VideoFrameState extends State<VideoFrame> {
                   ),
                 ),
         ),
+        !_isVideoRun
+            ? Positioned(
+                right: 5,
+                bottom: 5,
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.of(context).push(_createRoute(_controller));
+                  },
+                  icon: const Icon(
+                    Icons.zoom_in_map,
+                  ),
+                ),
+              )
+            : const SizedBox(),
       ],
     );
   }
+}
+
+Route _createRoute(VideoPlayerController controller) {
+  return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) =>
+          VideoZoomInPage(playerController: controller),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(0.0, 0.0);
+        const end = Offset.zero;
+        const curve = Curves.ease;
+
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+      transitionDuration: const Duration(milliseconds: 500));
 }
