@@ -2,7 +2,7 @@ import 'package:blindside_task/data/models/video_model.dart';
 import 'package:blindside_task/domain/cubit/comment_cubit.dart';
 import 'package:blindside_task/presentation/widgets/chips/comment_chip.dart';
 import 'package:blindside_task/presentation/widgets/chips/like_chip.dart';
-import 'package:blindside_task/presentation/widgets/videos/video_frame.dart';
+import 'package:blindside_task/presentation/widgets/videos/frames/concrete_video_frame.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -27,7 +27,7 @@ class VideoParticularBundle extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            VideoFrame(videoModel: videoModel),
+            ConcreteVideoFrame(videoModel: videoModel),
             const SizedBox(
               height: 20,
             ),
@@ -50,12 +50,12 @@ class VideoParticularBundle extends StatelessWidget {
                     BlocBuilder<CommentCubit, CommentState>(
                       builder: (context, state) {
                         if (state is CommentShow) {
-                          return CommentChip(
+                          return const CommentChip(
                             navigate: false,
                             isActive: true,
                           );
                         }
-                        return CommentChip(
+                        return const CommentChip(
                           navigate: false,
                           isActive: false,
                         );

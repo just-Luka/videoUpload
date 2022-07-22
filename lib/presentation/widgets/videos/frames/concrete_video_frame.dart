@@ -1,26 +1,30 @@
-import 'dart:io';
+import 'dart:async';
 
 import 'package:blindside_task/data/models/video_model.dart';
-import 'package:blindside_task/presentation/pages/video_zoom_in_page.dart';
-import 'package:blindside_task/presentation/widgets/painters/triangle_painter.dart';
+import 'package:blindside_task/presentation/widgets/videos/frames/video_frame_mixin.dart';
+import 'package:blindside_task/presentation/widgets/videos/frames/zoom_in_video_frame.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-class VideoFrame extends StatefulWidget {
+class ConcreteVideoFrame extends StatefulWidget {
   final VideoModel videoModel;
 
-  const VideoFrame({
+  const ConcreteVideoFrame({
     Key? key,
     required this.videoModel,
   }) : super(key: key);
 
   @override
-  State<VideoFrame> createState() => _VideoFrameState();
+  State<ConcreteVideoFrame> createState() => _ConcreteVideoFrameState();
 }
 
-class _VideoFrameState extends State<VideoFrame> {
+class _ConcreteVideoFrameState extends State<ConcreteVideoFrame>
+    with VideoFrameMixin {
   bool _isVideoRun = false;
+  bool _isVideoInFocus = false;
+
   late VideoPlayerController _controller;
+  Timer? _videoFocusTime;
 
   @override
   void initState() {
@@ -35,7 +39,22 @@ class _VideoFrameState extends State<VideoFrame> {
     super.dispose();
   }
 
-  _updateVideoRunState() {
+  void _videoInFocus() {
+    _videoFocusTime?.cancel();
+
+    setState(() {
+      _isVideoInFocus = !_isVideoInFocus;
+    });
+
+    _videoFocusTime = Timer(
+      const Duration(seconds: 3),
+      () => setState(() {
+        _isVideoInFocus = false;
+      }),
+    );
+  }
+
+  void _updateVideoRunState() {
     setState(() {
       _isVideoRun = !_isVideoRun;
     });
@@ -56,7 +75,7 @@ class _VideoFrameState extends State<VideoFrame> {
           tag: 'video',
           child: GestureDetector(
             onTap: () {
-              _updateVideoRunState();
+              _videoInFocus();
             },
             child: Center(
               child: SizedBox(
@@ -74,63 +93,32 @@ class _VideoFrameState extends State<VideoFrame> {
         ),
         AnimatedSwitcher(
           duration: const Duration(milliseconds: 300),
-          child: _isVideoRun
-              ? const SizedBox()
-              : ElevatedButton(
-                  onPressed: () => _updateVideoRunState(),
-                  style: ButtonStyle(
-                    shape: MaterialStateProperty.all(const CircleBorder()),
-                    padding:
-                        MaterialStateProperty.all(const EdgeInsets.all(20)),
-                    backgroundColor: MaterialStateProperty.all(
-                      Colors.black.withOpacity(0.1),
-                    ),
-                    overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                      (states) {
-                        if (states.contains(MaterialState.pressed)) {
-                          return Colors.grey.shade400;
-                        }
-                      },
-                    ),
-                  ),
-                  child: CustomPaint(
-                    child: CustomPaint(
-                      painter: TrianglePainter(
-                        strokeColor: Colors.white,
-                        strokeWidth: 10,
-                        paintingStyle: PaintingStyle.fill,
-                      ),
-                      child: const SizedBox(
-                        height: 30,
-                        width: 28,
-                      ),
-                    ),
-                  ),
-                ),
+          child: switchVideoAttributes(
+              _isVideoRun, _isVideoInFocus, _updateVideoRunState),
         ),
-        !_isVideoRun
-            ? Positioned(
+        _isVideoRun && !_isVideoInFocus
+            ? const SizedBox()
+            : Positioned(
                 right: 5,
                 bottom: 5,
                 child: IconButton(
                   onPressed: () {
-                    Navigator.of(context).push(_createRoute(_controller));
+                    Navigator.of(context).push(_VideoZoomInRoute(_controller));
                   },
                   icon: const Icon(
                     Icons.zoom_in_map,
                   ),
                 ),
-              )
-            : const SizedBox(),
+              ),
       ],
     );
   }
 }
 
-Route _createRoute(VideoPlayerController controller) {
+Route _VideoZoomInRoute(VideoPlayerController controller) {
   return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) =>
-          VideoZoomInPage(playerController: controller),
+          ZoomInVideoFrame(playerController: controller),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(0.0, 0.0);
         const end = Offset.zero;
