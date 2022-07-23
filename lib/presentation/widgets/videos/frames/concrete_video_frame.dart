@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:blindside_task/data/models/video_model.dart';
+import 'package:blindside_task/presentation/widgets/sliders/video_slider.dart';
 import 'package:blindside_task/presentation/widgets/videos/frames/video_frame_mixin.dart';
 import 'package:blindside_task/presentation/widgets/videos/frames/zoom_in_video_frame.dart';
 import 'package:flutter/material.dart';
@@ -86,7 +87,7 @@ class _ConcreteVideoFrameState extends State<ConcreteVideoFrame>
                         aspectRatio: _controller.value.aspectRatio,
                         child: VideoPlayer(_controller),
                       )
-                    : SizedBox(),
+                    : const SizedBox(),
               ),
             ),
           ),
@@ -95,6 +96,20 @@ class _ConcreteVideoFrameState extends State<ConcreteVideoFrame>
           duration: const Duration(milliseconds: 300),
           child: switchVideoAttributes(
               _isVideoRun, _isVideoInFocus, _updateVideoRunState),
+        ),
+        Positioned(
+          bottom: 0,
+          left: 0,
+          child: VideoSlider(playerController: _controller),
+        ),
+        // TODO error rise during playback
+        // _isVideoRun && !_isVideoInFocus
+        //     ? const SizedBox()
+        //     :
+        Positioned(
+          bottom: 0,
+          left: 0,
+          child: VideoSlider(playerController: _controller),
         ),
         _isVideoRun && !_isVideoInFocus
             ? const SizedBox()
