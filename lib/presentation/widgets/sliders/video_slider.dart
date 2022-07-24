@@ -14,33 +14,35 @@ class VideoSlider extends StatefulWidget {
 }
 
 class _VideoSliderState extends State<VideoSlider> {
-  double sliderValue = 0.0;
+  double _sliderValue = 0.0;
+  int videoPosition = 0;
   int videoDuration = 0;
 
   @override
   void initState() {
     super.initState();
-    widget.playerController.addListener(() {
-      videoDuration = widget.playerController.value.duration.inMilliseconds;
-
-      var current = widget.playerController.value.position.inMilliseconds;
-
-      var percent = (current) / videoDuration;
+    videoDuration = widget.playerController.value.duration.inMilliseconds;
+    videoPosition = widget.playerController.value.position.inMilliseconds;
+    if (videoPosition > 0.0 && videoDuration > 0.0) {
+      double percent = videoPosition / videoDuration;
       setState(() {
-        sliderValue = percent;
+        _sliderValue = percent;
       });
-    });
+    } else {
+      setState(() {
+        _sliderValue = 0;
+      });
+    }
   }
 
   @override
   void dispose() {
-    widget.playerController.removeListener;
     super.dispose();
   }
 
   void _updateVideoPosition(double newValue) {
     setState(() {
-      sliderValue = newValue;
+      _sliderValue = newValue;
     });
     final Duration updatedVideoPosition =
         Duration(milliseconds: (newValue * videoDuration).toInt());
@@ -53,7 +55,7 @@ class _VideoSliderState extends State<VideoSlider> {
     return SizedBox(
       width: 300,
       child: Slider(
-        value: sliderValue,
+        value: _sliderValue,
         onChanged: _updateVideoPosition,
         thumbColor: Colors.red,
         activeColor: Colors.red,

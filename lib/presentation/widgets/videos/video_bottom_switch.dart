@@ -51,26 +51,7 @@ class _VideoBottomSwitchState extends State<VideoBottomSwitch> {
           }
           return AnimatedSwitcher(
             duration: const Duration(milliseconds: 200),
-            child: Center(
-              child: Column(
-                children: [
-                  CenterFrame(
-                    child: Text(
-                      'Related Videos',
-                      style: GoogleFonts.josefinSans(
-                        color: Colors.white,
-                        fontSize: 22,
-                      ),
-                    ),
-                  ),
-                  const CenterFrame(
-                    child: VideoDivider(),
-                  ),
-                  // const VideoRelatedBundle(),
-                  // const VideoRelatedBundle(),
-                ],
-              ),
-            ),
+            child: Center(),
           );
         },
       ),

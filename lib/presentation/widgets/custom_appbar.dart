@@ -17,7 +17,7 @@ class CustomAppbar extends StatelessWidget {
         alignment: Alignment.bottomLeft,
         heightFactor: 1.3,
         child: Text(
-          'Blindside Videos',
+          'My videos',
           style: GoogleFonts.josefinSans(
             fontSize: 23,
             fontWeight: FontWeight.w700,

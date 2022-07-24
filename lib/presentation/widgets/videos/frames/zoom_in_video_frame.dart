@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:blindside_task/presentation/widgets/sliders/video_slider.dart';
 import 'package:blindside_task/presentation/widgets/videos/frames/video_frame_mixin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -103,6 +104,18 @@ class _ZoomInVideoFrameState extends State<ZoomInVideoFrame>
               _isVideoRun && !_isVideoInFocus
                   ? const SizedBox()
                   : Positioned(
+                      bottom: 25,
+                      left: 20,
+                      child: SizedBox(
+                        width: 700,
+                        child: VideoSlider(
+                          playerController: widget.playerController,
+                        ),
+                      ),
+                    ),
+              _isVideoRun && !_isVideoInFocus
+                  ? const SizedBox()
+                  : Positioned(
                       right: 0,
                       bottom: 0,
                       child: SafeArea(
@@ -146,6 +159,15 @@ class _ZoomInVideoFrameState extends State<ZoomInVideoFrame>
               child: switchVideoAttributes(
                   _isVideoRun, _isVideoInFocus, _updateVideoRunState),
             ),
+            _isVideoRun && !_isVideoInFocus
+                ? const SizedBox()
+                : Positioned(
+                    bottom: 322,
+                    left: 20,
+                    child: VideoSlider(
+                      playerController: widget.playerController,
+                    ),
+                  ),
             _isVideoRun && !_isVideoInFocus
                 ? const SizedBox()
                 : Padding(

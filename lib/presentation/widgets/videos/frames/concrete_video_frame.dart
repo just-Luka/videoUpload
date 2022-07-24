@@ -31,7 +31,9 @@ class _ConcreteVideoFrameState extends State<ConcreteVideoFrame>
   void initState() {
     super.initState();
     _controller = VideoPlayerController.file(widget.videoModel.file)
-      ..initialize().then((value) => {setState(() {})});
+      ..initialize().then((value) => {
+            setState(() {}),
+          });
   }
 
   @override
@@ -97,20 +99,15 @@ class _ConcreteVideoFrameState extends State<ConcreteVideoFrame>
           child: switchVideoAttributes(
               _isVideoRun, _isVideoInFocus, _updateVideoRunState),
         ),
-        Positioned(
-          bottom: 0,
-          left: 0,
-          child: VideoSlider(playerController: _controller),
-        ),
-        // TODO error rise during playback
-        // _isVideoRun && !_isVideoInFocus
-        //     ? const SizedBox()
-        //     :
-        Positioned(
-          bottom: 0,
-          left: 0,
-          child: VideoSlider(playerController: _controller),
-        ),
+        _isVideoRun && !_isVideoInFocus
+            ? const SizedBox()
+            : Positioned(
+                bottom: 0,
+                left: 0,
+                child: VideoSlider(
+                  playerController: _controller,
+                ),
+              ),
         _isVideoRun && !_isVideoInFocus
             ? const SizedBox()
             : Positioned(
