@@ -1,6 +1,6 @@
 # videoUpload
 
-A flutter app where you can upload your video from gallery and run it!
+Here you can upload your video from gallery collect it together and run it!
 
 Note - videos are not saving on cloud! 
 
