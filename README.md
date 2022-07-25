@@ -1,4 +1,4 @@
-# videoUpload
+# App for video Uploading
 
 You can upload your video from gallery, collect it together and run it!
 
