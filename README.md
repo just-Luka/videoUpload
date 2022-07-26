@@ -6,8 +6,8 @@ Note - videos are not saving on cloud!
 
 ## Screenshots
 
-![Simulator Screen Shot - iPhone 12 Pro - 2022-07-24 at 21 06 16-2](https://user-images.githubusercontent.com/56077514/180663456-3909b680-84a6-423c-a7ad-f29ae95e4768.jpg)
-![Simulator Screen Shot - iPhone 12 Pro - 2022-07-24 at 21 15 11](https://user-images.githubusercontent.com/56077514/180663539-11f2bf1d-a088-4e1a-b1ca-2a183646e4d8.jpg)
+<img width="174" alt="Screenshot_2022-07-26_at_16 04 39-removebg-preview" src="https://user-images.githubusercontent.com/56077514/181025796-18fdf6eb-eb71-4c86-ba21-b86e2c3a8b32.png"> <img width="175" alt="Screenshot_2022-07-26_at_15 49 39-removebg-preview" src="https://user-images.githubusercontent.com/56077514/181025078-1289faa4-fdff-4df5-a560-fb9d864e3f8a.png">
+
 
 ![simulator-screen-recording-iphone-12-pro-2022-07-24-at-211839_041ozG7Y](https://user-images.githubusercontent.com/56077514/180858998-4e48e5b0-34f7-4c6d-8d5d-c13a2a02c6d7.gif)
 
