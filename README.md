@@ -1,8 +1,8 @@
 # App for video Uploading
 
-You can upload your video from gallery, collect it together and run it!
+You can upload your video from gallery, collect it together and run it.
 
-Note - videos are not saving on cloud! 
+Note - App is only example and created for only demonstration purposes! 
 
 ## Screenshots
 
